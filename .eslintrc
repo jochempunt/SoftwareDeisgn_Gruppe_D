@@ -1,8 +1,20 @@
 {
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+   
     "rules": {
-      "semi": ["error", "never"],
-      "quotes": [2, "single"]
+      "semi": ["error", "always"],
+      "quotes": ["warn", "double"],
+      "camelcase":["warn",{"properties":"always"}],
+      "@typescript-eslint/typedef": ["error",{"arrowParameter": true,"variableDeclaration": true}],
+      "@typescript-eslint/no-inferrable-types": "off",
+      "space-in-parens": ["error", "never"],
+      "comma-spacing": ["error", { "before": false, "after": true }],
+      "keyword-spacing": ["error", { "before": true }]
     }
   }
