@@ -1,4 +1,4 @@
-class Game{
+class Game {
     title: string;
     player_One:string;
     player_Two:string;
@@ -14,14 +14,13 @@ class Game{
     }
 }
 
-class Field{
+class Field {
     pos_x: number;
     pos_y: number;
     occupied:boolean;
 }
 
-
-class Statistics{
+class Statistics {
     game_Amount:number;
     played_Games:Game[];
 
@@ -31,27 +30,71 @@ class Statistics{
 }
 
 
-class User{
+class User {
     username: string;
+
+    chooseFieldPoint(_field: Field): void {}
 
     start_Game():void{}
 
     create_Game():void{
-        function selectEnemy():string{
-            return "against ____";
+
+        let game: Game = new Game();
+        let ownPlayer: Player = new Player();
+        let enemyPlayer: Player = new Player();
+        
+        selectEnemy();
+
+        setPlayerColor(ownPlayer);
+        setPlayerColor(enemyPlayer);
+        
+        let gameSizeX: number = 0;
+        let gameSizeY: number = 0;
+
+        while (gameSizeX < 3 || gameSizeY < 3) {
+            determineFieldSize();
+        }
+        setFieldSize(gameSizeX, gameSizeY);
+
+        let winningScore: number;
+        while (winningScore < gameSizeX || winningScore < gameSizeY){
+            determineScore();
+        }
+        
+        setScore(winningScore);
+
+        let firstPoint: Field = new Field();
+        this.chooseFieldPoint(firstPoint);
+
+        function determineScore(): void {}
+        
+        function setScore(_winScore: number): void {
+            game.win_score = winningScore;
+        }
+
+        function determineFieldSize(): void {}
+        
+        function setFieldSize(_sizeX: number, _sizeY: number): void {
+            game.fieldsize_x = _sizeX;
+            game.fieldsize_y = _sizeY;
+        }
+        
+        function setPlayerColor(_player: Player): void {
+            let colorChoice: string;
+            _player.color = colorChoice;
+        }
+        
+        function selectEnemy(): void {
+            let buttonChoice: string;
+            enemyPlayer.playerType = buttonChoice;
         }      
-        function setPlayerColor()
-        
-        const choice: string = selectEnemy();
-
-
-        
-
-
-
     }
 }
 
+class Player {
+    color: string;
+    playerType: string;
+}
 
 class Registered_User extends User{
     password: string;
